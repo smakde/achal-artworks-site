@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Achal Artworks - Handcrafted traditional Indian Rangoli art, deities panels, borders, and festive decor decals. Explore our collection.">
+    <title>Achal Artworks | Premium Handcrafted Indian Festival Decor</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons for UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <a href="#" class="brand-logo">
+                <img src="assets/logo.png" alt="Achal Artworks Logo" id="logo-img">
+                <div class="brand-text">
+                    <span class="brand-name">Achal</span>
+                    <span class="brand-sub">Artworks</span>
+                </div>
+            </a>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#collections" class="nav-link">Collections</a></li>
+                    <li><a href="#catalogues" class="nav-link">Catalogues</a></li>
+                    <li><a href="#about" class="nav-link">About & Order</a></li>
+                    <li><a href="https://wa.me/919999999999" class="nav-btn-contact" target="_blank"><i class="fab fa-whatsapp"></i> Chat with Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="badge">Handcrafted Elegance</span>
+                <h1>Adorn Your Home with Traditional Splendor</h1>
+                <p>Premium, reusable acrylic and felt Rangoli art sets, deity panels, and festive borders designed to make every celebration special.</p>
+                <div class="hero-actions">
+                    <a href="#collections" class="btn-primary">View Collections</a>
+                    <a href="#catalogues" class="btn-secondary">Download Catalogues</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="hero-image-glow"></div>
+                <img src="assets/art4.jpg" alt="Featured Achal Artworks Rangoli Setup" class="hero-showcase-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats/Intro Bar -->
+    <section class="intro-bar">
+        <div class="intro-container">
+            <div class="intro-item">
+                <div class="intro-icon"><i class="fas fa-magic"></i></div>
+                <div class="intro-text">
+                    <h3>100% Handcrafted</h3>
+                    <p>Designed by local artisans</p>
+                </div>
+            </div>
+            <div class="intro-item">
+                <div class="intro-icon"><i class="fas fa-recycle"></i></div>
+                <div class="intro-text">
+                    <h3>Reusable & Durable</h3>
+                    <p>Premium acrylic materials</p>
+                </div>
+            </div>
+            <div class="intro-item">
+                <div class="intro-icon"><i class="fas fa-truck-fast"></i></div>
+                <div class="intro-text">
+                    <h3>Pan-India Shipping</h3>
+                    <p>Safe, custom delivery</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section id="collections" class="section-padding collections-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Explore Our Art Collections</h2>
+                <p>Click on the categories to filter our premium catalog items. Every artwork is custom-made to order.</p>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">All Artworks</button>
+                <button class="filter-btn" data-filter="mandalas">Mandalas & Floor Art</button>
+                <button class="filter-btn" data-filter="deities">Deities & Panels</button>
+                <button class="filter-btn" data-filter="borders">Borders & Vines</button>
+                <button class="filter-btn" data-filter="accents">Mini Accents</button>
+                <button class="filter-btn" data-filter="hangings">Garlands & Hangings</button>
+            </div>
+
+            <!-- Collections Gallery Grid -->
+            <div class="gallery-grid" id="gallery-grid">
+                
+                <!-- Mandalas & Floor Art -->
+                <div class="gallery-item" data-category="mandalas">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <img src="assets/art4.jpg" alt="Circular Peacock Mirror Mandala">
+                            <div class="art-category">Floor Art</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Mayur Peacock Mirror Mandala</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Size: 3.5 ft diameter</p>
+                            <div class="art-price-row">
+                                <span class="price">₹1,700 <small>set</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Mayur%20Peacock%20Mirror%20Mandala%20(3.5%20ft%20-%20%E2%82%B91,700)." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="mandalas">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <img src="assets/art7.jpg" alt="Floral Circular Mandala">
+                            <div class="art-category">Floor Art</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Circular Floral Mandala</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Size: 3 ft diameter</p>
+                            <div class="art-price-row">
+                                <span class="price">₹1,000 <small>set</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Circular%20Floral%20Mandala%20(3%20ft%20-%20%E2%82%B91,000)." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deities & Panels -->
+                <div class="gallery-item" data-category="deities">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <!-- We can use art5.jpg or another sample for Lakshmi -->
+                            <img src="assets/art5.jpg" alt="Lakshmi Sitting on Lotus">
+                            <div class="art-category">Deities</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Lakshmi on Lotus (A3 Set)</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Size: 1.5 ft base</p>
+                            <div class="art-price-row">
+                                <span class="price">₹1,000 <small>set</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Lakshmi%20on%20Lotus%20(A3%20set%20-%20%E2%82%B91,000)." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="deities">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <img src="assets/art6.jpg" alt="Baby Ganesha Decal">
+                            <div class="art-category">Deities</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Baby Ganesha with Mouse</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Size: 1.5 ft base</p>
+                            <div class="art-price-row">
+                                <span class="price">₹750 <small>each</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Baby%20Ganesha%20with%20Mouse%20(1.5%20ft%20-%20%E2%82%B9750)." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="deities">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <img src="assets/art8.jpg" alt="Devi Gaurai Faces Set">
+                            <div class="art-category">Deities</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Gaurai Faces & Accessories</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Size: 1.5 ft base</p>
+                            <div class="art-price-row">
+                                <span class="price">₹1,100 <small>full set</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Gaurai%20Faces%20Full%20Set%20(%E2%82%B91,100)." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Borders & Vines -->
+                <div class="gallery-item" data-category="borders">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <img src="assets/art4.jpg" alt="Kamal Linked Border">
+                            <div class="art-category">Borders</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Lotus (Kamal) linked border</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Size: 11.5 x 2.5 inches</p>
+                            <div class="art-price-row">
+                                <span class="price">₹100 <small>line</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Lotus%20Linked%20Border%20(11.5%22%20-%20%E2%82%B9100)." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="borders">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <img src="assets/art4.jpg" alt="Marigold Garland hanging border">
+                            <div class="art-category">Borders</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Marigold (Zhendu) Garland</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Size: 11 x 4.5 inches</p>
+                            <div class="art-price-row">
+                                <span class="price">₹200 <small>line (3 for ₹500)</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Marigold%20Garland%20Border%20(%E2%82%B9200%20each)." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mini Accents -->
+                <div class="gallery-item" data-category="accents">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <img src="assets/art1.jpg" alt="Small Lotus or Hibiscus Accent">
+                            <div class="art-category">Accents</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Mini Lotus / Hibiscus Accent</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Size: 4 x 4 inches</p>
+                            <div class="art-price-row">
+                                <span class="price">₹50 <small>each</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Mini%20Lotus%20/%20Hibiscus%20Accent%20(%E2%82%B950)." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="accents">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <img src="assets/art1.jpg" alt="Lakshmi Feet / Paul">
+                            <div class="art-category">Accents</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Mahalakshmi Feet (Paul) Set</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Size: 3.5 x 2.5 inches</p>
+                            <div class="art-price-row">
+                                <span class="price">₹50 <small>pair</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Mahalakshmi%20Feet%20Set%20(3.5%22%20-%20%E2%82%B950)." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Garlands & Hangings -->
+                <div class="gallery-item" data-category="hangings">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <img src="assets/art2.jpg" alt="Modak Hanging Garland">
+                            <div class="art-category">Hangings</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Modak Festive Hanging Toran</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Fabric modaks & pearls</p>
+                            <div class="art-price-row">
+                                <span class="price">Custom <small>pricing</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Modak%20Festive%20Hanging%20Toran." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="hangings">
+                    <div class="art-card">
+                        <div class="art-img-container">
+                            <img src="assets/art3.jpg" alt="Colorful Woolen Malas">
+                            <div class="art-category">Hangings</div>
+                        </div>
+                        <div class="art-details">
+                            <h3>Traditional Woolen & Pearl Malas</h3>
+                            <p class="art-specs"><i class="fas fa-up-down-left-right"></i> Deities Necklaces, Various Colors</p>
+                            <div class="art-price-row">
+                                <span class="price">Custom <small>pricing</small></span>
+                                <a href="https://wa.me/919999999999?text=Hi%20Achal%20Artworks!%20I%20am%20interested%20in%20the%20Traditional%20Woolen%20Malas." class="btn-wa-order" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Enquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogues Section -->
+    <section id="catalogues" class="section-padding catalogues-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Design Catalogues</h2>
+                <p>View or download our complete PDF catalogs. Perfect for finding the exact design code, size, and pricing matching your requirements.</p>
+            </div>
+            
+            <div class="catalogues-grid">
+                <!-- Main Catalog Card -->
+                <div class="catalogue-card">
+                    <div class="cat-icon-container">
+                        <i class="far fa-file-pdf"></i>
+                    </div>
+                    <div class="cat-details">
+                        <h3>Main Festival & Rangoli Catalog</h3>
+                        <p>Features our premium large circular peacock mandalas, goddess plates, Gaurai face sets, Tulsi Vrindavan designs, and large display backdrops.</p>
+                        <ul class="cat-meta-list">
+                            <li><i class="far fa-copy"></i> Over 20+ design sets</li>
+                            <li><i class="fas fa-compress-arrows-alt"></i> Sizes: 1.5 ft to 3.5 ft</li>
+                        </ul>
+                        <div class="cat-actions">
+                            <a href="New_Design.pdf" target="_blank" class="btn-cat-view"><i class="far fa-eye"></i> View PDF</a>
+                            <a href="New_Design.pdf" download class="btn-cat-download"><i class="fas fa-download"></i> Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accents Catalog Card -->
+                <div class="catalogue-card">
+                    <div class="cat-icon-container">
+                        <i class="far fa-file-pdf"></i>
+                    </div>
+                    <div class="cat-details">
+                        <h3>Mini Decals & Accents Catalog</h3>
+                        <p>Includes small diyas, single lotuses, hibiscus borders, door arches, Shubh-Labh lettering, running vine borders, and small deity footprints.</p>
+                        <ul class="cat-meta-list">
+                            <li><i class="far fa-copy"></i> 80+ accent items</li>
+                            <li><i class="fas fa-compress-arrows-alt"></i> Sizes: 3" to 16.5"</li>
+                        </ul>
+                        <div class="cat-actions">
+                            <a href="Doc_1.pdf" target="_blank" class="btn-cat-view"><i class="far fa-eye"></i> View PDF</a>
+                            <a href="Doc_1.pdf" download class="btn-cat-download"><i class="fas fa-download"></i> Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Order Guidelines Section -->
+    <section id="about" class="section-padding about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-info">
+                    <h2>About Achal Artworks</h2>
+                    <p>Achal Artworks was created to bring high-quality, reusable, and vibrant traditional artwork to modern Indian homes. Our pieces are handcrafted with durable acrylic bases, bright premium felt, glitters, and mirrors, offering a sustainable alternative to traditional powder-based rangolis.</p>
+                    <p>Designed with storage in mind, our art sets can be packed away and reused year after year for Diwali, Ganeshotsav, weddings, and all festive celebrations.</p>
+                    
+                    <div class="social-links-container">
+                        <h4>Follow Our Work</h4>
+                        <div class="social-links">
+                            <a href="https://instagram.com/art_aani_barachkahi" target="_blank"><i class="fab fa-instagram"></i> @art_aani_barachkahi</a>
+                            <a href="https://wa.me/919999999999" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-guidelines">
+                    <h3>How to Place an Order</h3>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-num">1</div>
+                            <div class="step-desc">
+                                <strong>Select Your Designs</strong>
+                                <p>Browse our collections above or download the full PDFs to pick the design code or name.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">2</div>
+                            <div class="step-desc">
+                                <strong>Connect on WhatsApp</strong>
+                                <p>Click the "Enquire" buttons to directly text us. Let us know if you require customization (colors, sizes).</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">3</div>
+                            <div class="step-desc">
+                                <strong>Order Confirmation & Dispatch</strong>
+                                <p>We verify your order details, share payment options (UPI, Netbanking), and dispatch securely packaged boxes via courier.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Achal Artworks. Handcrafted with Love. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JS script -->
+    <script src="script.js"></script>
+</body>
+</html>
