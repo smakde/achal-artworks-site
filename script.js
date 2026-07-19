@@ -81,12 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Cart Functionality (Add to Cart from Home Page)
     function updateHeaderCartCount() {
+        const cart = JSON.parse(localStorage.getItem('achal_cart')) || [];
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        
+        // Update both desktop and mobile cart badge counts
         const cartCountElem = document.getElementById('cart-count');
-        if (cartCountElem) {
-            const cart = JSON.parse(localStorage.getItem('achal_cart')) || [];
-            const count = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCountElem.textContent = count;
-        }
+        if (cartCountElem) cartCountElem.textContent = count;
+        
+        const cartCountMobileElem = document.getElementById('cart-count-mobile');
+        if (cartCountMobileElem) cartCountMobileElem.textContent = count;
     }
     
     // Expose updateHeaderCartCount globally so cart-page.js can call it

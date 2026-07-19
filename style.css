@@ -1423,3 +1423,27 @@ img {
     }
 }
 
+
+/* Mobile Controls in Header */
+.header-mobile-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.mobile-cart-link {
+    display: none; /* Hidden on desktop */
+    position: relative;
+    font-size: 1.35rem;
+    color: var(--color-primary);
+    padding: 4px;
+}
+
+/* Show on mobile viewports */
+@media (max-width: 767px) {
+    .mobile-cart-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
