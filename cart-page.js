@@ -199,7 +199,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 message += `*Note:* Order contains items with custom pricing. Please verify details.\n`;
             }
             message += `*Shipping:* Calculated based on delivery location.\n\n`;
-            message += `Please confirm availability and share payment details. Thank you!`;
+            message += `Please confirm availability and share payment details. Thank you!
+
+`;
+            message += `Sent from: https://d3l4yn4jqdf2mk.cloudfront.net/`;
 
             // Encode message for URL query
             const encodedMsg = encodeURIComponent(message);
