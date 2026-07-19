@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review your shopping cart and place your order for premium handcrafted Achal Artworks products via WhatsApp.">
+    <title>Shopping Cart | Achal Artworks</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons for UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Achal</span>
+                    <span class="brand-sub">Artworks</span>
+                </div>
+            </a>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="index.html#collections" class="nav-link">Collections</a></li>
+                    <li><a href="index.html#catalogues" class="nav-link">Catalogues</a></li>
+                    <li><a href="cart.html" class="nav-link active nav-cart-link"><i class="fas fa-shopping-cart"></i> Cart <span id="cart-count" class="cart-badge">0</span></a></li>
+                    <li><a href="https://wa.me/917798510600" class="nav-btn-contact" target="_blank"><i class="fab fa-whatsapp"></i> Chat with Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Page Header -->
+    <section class="cart-hero">
+        <div class="container">
+            <h1>Your Shopping Cart</h1>
+            <p>Review your selected art pieces and provide your shipping details to complete order via WhatsApp.</p>
+        </div>
+    </section>
+
+    <!-- Cart Layout -->
+    <section class="cart-section section-padding">
+        <div class="container">
+            <div class="cart-grid" id="cart-grid-container">
+                
+                <!-- Cart Items List (Left Side) -->
+                <div class="cart-items-column">
+                    <div class="cart-card-group" id="cart-items-list">
+                        <!-- Dynamically populated by JS -->
+                        <div class="cart-loading">
+                            <i class="fas fa-spinner fa-spin"></i> Loading your cart...
+                        </div>
+                    </div>
+                    
+                    <div class="cart-actions-row">
+                        <a href="index.html#collections" class="btn-continue-shopping"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+                        <button id="clear-cart-btn" class="btn-clear-cart"><i class="far fa-trash-alt"></i> Clear Cart</button>
+                    </div>
+                </div>
+
+                <!-- Order Checkout Form & Summary (Right Side) -->
+                <div class="cart-summary-column">
+                    <!-- Delivery Info Form -->
+                    <div class="checkout-form-card">
+                        <h3><i class="fas fa-truck"></i> Delivery Information</h3>
+                        <form id="checkout-form">
+                            <div class="form-group">
+                                <label for="cust-name">Your Full Name <span class="required">*</span></label>
+                                <input type="text" id="cust-name" placeholder="E.g. Shreyas Makde" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cust-address">Delivery Address <span class="required">*</span></label>
+                                <textarea id="cust-address" rows="3" placeholder="Street, Landmark, City, Pincode" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="cust-notes">Customization / Notes</label>
+                                <textarea id="cust-notes" rows="2" placeholder="E.g. want specific colors, sizes, or delivery constraints"></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Summary Card -->
+                    <div class="summary-card">
+                        <h3>Order Summary</h3>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="summary-subtotal">₹0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span class="free-shipping">Calculated on WhatsApp</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row total-row">
+                            <span>Estimated Total</span>
+                            <span id="summary-total" class="total-price">₹0</span>
+                        </div>
+                        
+                        <button id="place-order-btn" class="btn-checkout-wa">
+                            <i class="fab fa-whatsapp"></i> Place Order via WhatsApp
+                        </button>
+                        <p class="checkout-hint"><i class="fas fa-lock"></i> No payment is taken now. We will verify availability and send UPI payment details on WhatsApp.</p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Empty Cart State -->
+            <div id="empty-cart-state" class="empty-cart-view" style="display: none;">
+                <div class="empty-icon"><i class="fas fa-shopping-basket"></i></div>
+                <h2>Your Shopping Cart is Empty</h2>
+                <p>Browse our handcrafted collections of traditional Indian artworks and add items to your cart to get started.</p>
+                <a href="index.html#collections" class="btn-primary">Browse Collections</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Achal Artworks. Handcrafted with Love. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Scripts -->
+    <script src="script.js"></script>
+    <script src="cart-page.js"></script>
+</body>
+</html>
