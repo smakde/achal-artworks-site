@@ -2,7 +2,7 @@
 set -e
 
 # Base directories
-SITE_DIR="/home/fast-learner/achal-artworks-site"
+SITE_DIR="/home/fast-learner/Documents/achal-artworks-site"
 TF_DIR="$SITE_DIR/terraform"
 
 echo "=== Step 1: Initializing & Applying Terraform Configuration ==="
