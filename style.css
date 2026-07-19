@@ -193,16 +193,16 @@ img {
 
 .brand-name {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 2.2rem;
+    font-weight: 800;
     color: var(--color-primary);
-    line-height: 1.1;
+    line-height: 1.0;
 }
 
 .brand-sub {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     color: var(--color-text-muted);
     text-transform: uppercase;
 }
@@ -530,24 +530,19 @@ img {
 .art-img-container {
     position: relative;
     aspect-ratio: 4/5;
-    background-color: #F6F3EC; /* Light cream matting background */
+    background-color: #F3F1EC;
     overflow: hidden;
-    padding: 16px; /* Matted portrait frame effect */
-    border-bottom: 1px solid var(--color-border);
 }
 
 .art-img-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid rgba(197, 160, 48, 0.25); /* Thin gold accent line around the photo */
-    filter: sepia(12%) contrast(104%) brightness(98%); /* Warms up and unifies different photo lightings */
     transition: transform var(--transition-smooth);
 }
 
 .art-card:hover .art-img-container img {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
 .art-category {

@@ -13,6 +13,7 @@ terraform apply -auto-approve
 # Extract outputs
 BUCKET_NAME=$(terraform output -raw s3_bucket_name)
 CLOUDFRONT_DOMAIN=$(terraform output -raw cloudfront_domain_name)
+DISTRIBUTION_ID=$(terraform output -raw cloudfront_distribution_id)
 
 echo ""
 echo "=== Step 2: Uploading Assets and Web Page to S3 Bucket ($BUCKET_NAME) ==="
@@ -25,7 +26,11 @@ aws s3 sync . "s3://$BUCKET_NAME" \
   --exclude ".git/*"
 
 echo ""
-echo "=== Step 3: Deployment Successful! ==="
+echo "=== Step 3: Invalidating CloudFront Cache ==="
+aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*"
+
+echo ""
+echo "=== Step 4: Deployment Successful! ==="
 echo "Your website is live at:"
 echo "https://$CLOUDFRONT_DOMAIN"
 echo "======================================"
