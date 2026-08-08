@@ -1404,6 +1404,14 @@ img {
     line-height: 1.4;
 }
 
+.bg-gradient-subtle {
+    background: linear-gradient(135deg, rgba(250, 246, 235, 0.95) 0%, rgba(243, 241, 236, 0.95) 100%);
+}
+
+.tracking-wide {
+    letter-spacing: 1px;
+}
+
 /* Empty Cart View */
 .empty-cart-view {
     text-align: center;

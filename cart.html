@@ -25,6 +25,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons for UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css?v=3.0">
 </head>
@@ -68,88 +70,128 @@
         </div>
     </header>
 
-    <!-- Cart Page Header -->
-    <section class="cart-hero">
-        <div class="container">
-            <h1>Your Shopping Cart</h1>
-            <p>Review your selected art pieces and provide your shipping details to complete order via WhatsApp.</p>
+    <!-- Cart Page Hero Header -->
+    <section class="cart-hero py-5 bg-gradient-subtle border-bottom">
+        <div class="container py-3">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted"><i class="fas fa-home me-1"></i> Home</a></li>
+                    <li class="breadcrumb-item active fw-bold text-primary" aria-current="page">Shopping Cart</li>
+                </ol>
+            </nav>
+            <h1 class="display-5 fw-bold text-primary mb-2" style="font-family: var(--font-heading);">Your Shopping Cart</h1>
+            <p class="lead text-muted mb-0">Review your selected handcrafted art pieces, customize quantities, and enter delivery details to place order via WhatsApp.</p>
         </div>
     </section>
 
-    <!-- Cart Layout -->
-    <section class="cart-section section-padding">
+    <!-- Cart Main Content Section -->
+    <section class="cart-section py-5">
         <div class="container">
-            <div class="cart-grid" id="cart-grid-container">
+            <div class="row g-4" id="cart-grid-container">
                 
-                <!-- Cart Items List (Left Side) -->
-                <div class="cart-items-column">
-                    <div class="cart-card-group" id="cart-items-list">
-                        <!-- Dynamically populated by JS -->
-                        <div class="cart-loading">
-                            <i class="fas fa-spinner fa-spin"></i> Loading your cart...
+                <!-- Cart Items List (Left Column - 8 Cols) -->
+                <div class="col-lg-8">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="fw-bold mb-0 text-dark"><i class="fas fa-shopping-bag text-primary me-2"></i> Cart Items</h4>
+                        <span class="badge bg-primary bg-opacity-10 text-primary border border-primary px-3 py-2 rounded-pill fw-bold" id="items-count-badge">0 Items</span>
+                    </div>
+
+                    <!-- Items List Group Container -->
+                    <div id="cart-items-list" class="d-flex flex-column gap-3 mb-4">
+                        <!-- Dynamically populated by cart-page.js -->
+                        <div class="card border-0 shadow-sm rounded-4 p-4 text-center text-muted">
+                            <div class="py-4">
+                                <i class="fas fa-spinner fa-spin fa-2x text-primary mb-3"></i>
+                                <p class="mb-0">Loading your shopping cart items...</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="cart-actions-row">
-                        <a href="index.html#collections" class="btn-continue-shopping"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
-                        <button id="clear-cart-btn" class="btn-clear-cart"><i class="far fa-trash-alt"></i> Clear Cart</button>
+                    <!-- Bottom Action Controls -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 pt-3 border-top">
+                        <a href="index.html#collections" class="btn btn-outline-primary fw-bold px-4 py-2 rounded-3">
+                            <i class="fas fa-arrow-left me-2"></i> Continue Shopping
+                        </a>
+                        <button id="clear-cart-btn" class="btn btn-outline-danger fw-bold px-4 py-2 rounded-3">
+                            <i class="far fa-trash-alt me-2"></i> Clear Cart
+                        </button>
                     </div>
                 </div>
 
-                <!-- Order Checkout Form & Summary (Right Side) -->
-                <div class="cart-summary-column">
-                    <!-- Delivery Info Form -->
-                    <div class="checkout-form-card">
-                        <h3><i class="fas fa-truck"></i> Delivery Information</h3>
-                        <form id="checkout-form">
-                            <div class="form-group">
-                                <label for="cust-name">Your Full Name <span class="required">*</span></label>
-                                <input type="text" id="cust-name" placeholder="E.g. Shreyas Makde" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cust-address">Delivery Address <span class="required">*</span></label>
-                                <textarea id="cust-address" rows="3" placeholder="Street, Landmark, City, Pincode" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="cust-notes">Customization / Notes</label>
-                                <textarea id="cust-notes" rows="2" placeholder="E.g. want specific colors, sizes, or delivery constraints"></textarea>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- Summary Card -->
-                    <div class="summary-card">
-                        <h3>Order Summary</h3>
-                        <div class="summary-divider"></div>
-                        <div class="summary-row">
-                            <span>Subtotal</span>
-                            <span id="summary-subtotal">₹0</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Shipping</span>
-                            <span class="free-shipping">Calculated on WhatsApp</span>
-                        </div>
-                        <div class="summary-divider"></div>
-                        <div class="summary-row total-row">
-                            <span>Estimated Total</span>
-                            <span id="summary-total" class="total-price">₹0</span>
-                        </div>
+                <!-- Order Checkout Form & Summary (Right Column - 4 Cols) -->
+                <div class="col-lg-4">
+                    <div class="sticky-top" style="top: 100px; z-index: 10;">
                         
-                        <button id="place-order-btn" class="btn-checkout-wa">
-                            <i class="fab fa-whatsapp"></i> Place Order via WhatsApp
-                        </button>
-                        <p class="checkout-hint"><i class="fas fa-lock"></i> No payment is taken now. We will verify availability and send UPI payment details on WhatsApp.</p>
+                        <!-- Delivery Info Form Card -->
+                        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                            <h5 class="fw-bold text-dark mb-3"><i class="fas fa-truck text-success me-2"></i> Delivery Information</h5>
+                            <form id="checkout-form" novalidate>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control rounded-3" id="cust-name" placeholder="Full Name" required>
+                                    <label for="cust-name">Full Name <span class="text-danger">*</span></label>
+                                </div>
+                                
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control rounded-3" id="cust-address" placeholder="Address" style="height: 90px;" required></textarea>
+                                    <label for="cust-address">Delivery Address <span class="text-danger">*</span></label>
+                                </div>
+                                
+                                <div class="form-floating mb-2">
+                                    <textarea class="form-control rounded-3" id="cust-notes" placeholder="Notes" style="height: 70px;"></textarea>
+                                    <label for="cust-notes">Color / Size Customization (Optional)</label>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Summary Card -->
+                        <div class="card border-0 shadow-lg rounded-4 p-4 text-white bg-dark">
+                            <h5 class="fw-bold mb-3 border-bottom border-secondary pb-3 text-warning"><i class="fas fa-receipt me-2"></i> Order Summary</h5>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="text-light text-opacity-75">Subtotal</span>
+                                <span id="summary-subtotal" class="fw-bold fs-5 text-light">₹0</span>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-light text-opacity-75">Shipping</span>
+                                <span class="badge bg-success bg-opacity-20 text-success border border-success px-2 py-1">Calculated via WhatsApp</span>
+                            </div>
+                            
+                            <div class="border-top border-secondary pt-3 mb-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fs-6 fw-bold">Estimated Total</span>
+                                    <span id="summary-total" class="fs-3 fw-bold text-warning">₹0</span>
+                                </div>
+                            </div>
+                            
+                            <button id="place-order-btn" class="btn btn-success btn-lg w-100 fw-bold py-3 rounded-3 shadow mb-3">
+                                <i class="fab fa-whatsapp me-2 fs-5"></i> Place Order via WhatsApp
+                            </button>
+                            
+                            <p class="small text-light text-opacity-75 mb-0 text-center lh-sm">
+                                <i class="fas fa-shield-halved text-success me-1"></i> No instant payment taken now. We verify order items & send UPI details on WhatsApp.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
             </div>
             
-            <!-- Empty Cart State -->
-            <div id="empty-cart-state" class="empty-cart-view" style="display: none;">
-                <div class="empty-icon"><i class="fas fa-shopping-basket"></i></div>
-                <h2>Your Shopping Cart is Empty</h2>
-                <p>Browse our handcrafted collections of traditional Indian artworks and add items to your cart to get started.</p>
-                <a href="index.html#collections" class="btn-primary">Browse Collections</a>
+            <!-- Modern Empty Cart State -->
+            <div id="empty-cart-state" class="empty-cart-view py-5 my-5 text-center" style="display: none;">
+                <div class="card border-0 shadow-sm rounded-4 p-5 mx-auto" style="max-width: 540px;">
+                    <div class="text-primary mb-3">
+                        <i class="fas fa-shopping-basket fa-4x opacity-50"></i>
+                    </div>
+                    <h2 class="fw-bold text-primary mb-2" style="font-family: var(--font-heading);">Your Shopping Cart is Empty</h2>
+                    <p class="text-muted mb-4">Explore our handcrafted collections of traditional Indian Rangoli art, deity panels, and festive decor to add items to your cart.</p>
+                    <div>
+                        <a href="index.html#collections" class="btn btn-primary btn-lg fw-bold px-5 py-3 rounded-3 shadow-sm">
+                            <i class="fas fa-sparkles me-2"></i> Explore Art Collections
+                        </a>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -165,7 +207,8 @@
     </footer>
 
     <!-- JS Scripts -->
-    <script src="script.js"></script>
-    <script src="cart-page.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js?v=3.0"></script>
+    <script src="cart-page.js?v=3.0"></script>
 </body>
 </html>

@@ -27,30 +27,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render cart items
     function renderCart() {
         const cart = getCart();
+        const itemsCountBadge = document.getElementById('items-count-badge');
         
         if (cart.length === 0) {
             cartGridContainer.style.display = 'none';
             emptyCartState.style.display = 'block';
+            if (itemsCountBadge) itemsCountBadge.textContent = '0 Items';
             return;
         }
 
-        cartGridContainer.style.display = 'grid';
+        cartGridContainer.style.display = 'flex';
         emptyCartState.style.display = 'none';
         cartItemsList.innerHTML = '';
+
+        const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+        if (itemsCountBadge) itemsCountBadge.textContent = `${totalItemsCount} Item${totalItemsCount > 1 ? 's' : ''}`;
 
         let subtotal = 0;
         let hasCustomPricing = false;
 
         cart.forEach((item, index) => {
             const itemElement = document.createElement('div');
-            itemElement.className = 'cart-item-card';
+            itemElement.className = 'card border-0 shadow-sm rounded-4 p-3 bg-white overflow-hidden';
 
             const priceNum = parseFloat(item.price);
             let priceDisplay = `₹${priceNum.toLocaleString('en-IN')}`;
             let itemTotalDisplay = `₹${(priceNum * item.quantity).toLocaleString('en-IN')}`;
             
             if (priceNum === 0) {
-                priceDisplay = 'Custom Price (Enquire)';
+                priceDisplay = 'Custom Price';
                 itemTotalDisplay = 'Price on Request';
                 hasCustomPricing = true;
             } else {
@@ -58,23 +63,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             itemElement.innerHTML = `
-                <div class="cart-item-img">
-                    <img src="${item.image}" alt="${item.name}">
-                </div>
-                <div class="cart-item-details">
-                    <div class="cart-item-header">
-                        <h4>${item.name}</h4>
-                        <button class="btn-remove-item" data-index="${index}"><i class="far fa-trash-alt"></i></button>
-                    </div>
-                    <p class="cart-item-size"><i class="fas fa-up-down-left-right"></i> Size: ${item.size}</p>
-                    <div class="cart-item-price-quantity">
-                        <span class="unit-price">${priceDisplay}</span>
-                        <div class="quantity-controller">
-                            <button class="qty-btn btn-minus" data-index="${index}"><i class="fas fa-minus"></i></button>
-                            <span class="qty-num">${item.quantity}</span>
-                            <button class="qty-btn btn-plus" data-index="${index}"><i class="fas fa-plus"></i></button>
+                <div class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <div class="bg-light rounded-3 p-2 d-flex align-items-center justify-content-center border" style="width: 85px; height: 85px;">
+                            <img src="${item.image}" alt="${item.name}" class="img-fluid rounded-2" style="max-height: 75px; object-fit: contain;">
                         </div>
-                        <span class="item-total-price">${itemTotalDisplay}</span>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+                            <h5 class="fw-bold mb-0 text-primary text-truncate" style="font-family: var(--font-heading); max-width: 320px;">${item.name}</h5>
+                            <button class="btn btn-sm btn-outline-danger border-0 rounded-circle btn-remove-item d-flex align-items-center justify-content-center" data-index="${index}" title="Remove Item" style="width: 34px; height: 34px;">
+                                <i class="far fa-trash-alt fs-6"></i>
+                            </button>
+                        </div>
+                        <p class="small text-muted mb-2"><i class="fas fa-up-down-left-right me-1 text-secondary"></i>Size: ${item.size}</p>
+                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                            <span class="small fw-semibold text-muted">Unit: ${priceDisplay}</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="input-group input-group-sm" style="width: 110px;">
+                                    <button class="btn btn-outline-secondary fw-bold qty-btn btn-minus" data-index="${index}">-</button>
+                                    <span class="form-control text-center fw-bold bg-light d-flex align-items-center justify-content-center">${item.quantity}</span>
+                                    <button class="btn btn-outline-secondary fw-bold qty-btn btn-plus" data-index="${index}">+</button>
+                                </div>
+                                <span class="badge bg-danger bg-opacity-10 text-danger border border-danger fw-bold fs-6 ms-1 px-3 py-2 rounded-3">${itemTotalDisplay}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;
