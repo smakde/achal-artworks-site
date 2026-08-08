@@ -144,6 +144,191 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 5. Product Image Modal & Zoom Functionality
+    const productModal = document.getElementById('product-modal');
+    const modalCloseBtn = document.querySelector('.modal-close-btn');
+    const modalBackdrop = document.querySelector('.product-modal-backdrop');
+    const modalImg = document.getElementById('modal-product-img');
+    const modalViewport = document.getElementById('modal-img-viewport');
+    
+    const zoomInBtn = document.getElementById('modal-zoom-in');
+    const zoomOutBtn = document.getElementById('modal-zoom-out');
+    const zoomResetBtn = document.getElementById('modal-zoom-reset');
+    const zoomLevelBadge = document.getElementById('zoom-level');
+    
+    let currentZoom = 1;
+    let isDragging = false;
+    let startX = 0, startY = 0;
+    let translateX = 0, translateY = 0;
+    
+    function applyTransform() {
+        if (modalImg) {
+            modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+            if (zoomLevelBadge) {
+                zoomLevelBadge.textContent = `${Math.round(currentZoom * 100)}%`;
+            }
+        }
+    }
+    
+    function resetZoom() {
+        currentZoom = 1;
+        translateX = 0;
+        translateY = 0;
+        applyTransform();
+    }
+    
+    function openModal(data) {
+        if (!productModal) return;
+        
+        if (modalImg) modalImg.src = data.image;
+        const titleElem = document.getElementById('modal-product-title');
+        if (titleElem) titleElem.textContent = data.name;
+        
+        const catElem = document.getElementById('modal-product-category');
+        if (catElem) catElem.textContent = data.category || 'Handcrafted Art';
+        
+        const specsElem = document.getElementById('modal-product-specs');
+        if (specsElem) {
+            const span = specsElem.querySelector('span');
+            if (span) span.textContent = 'Size: ' + (data.size || 'Standard');
+        }
+        
+        const priceElem = document.getElementById('modal-product-price');
+        if (priceElem) {
+            const priceNum = Number(data.price);
+            priceElem.textContent = priceNum > 0 ? `₹${priceNum.toLocaleString('en-IN')}` : 'Custom Pricing';
+        }
+        
+        const cartBtn = document.getElementById('modal-add-to-cart-btn');
+        if (cartBtn) {
+            cartBtn.onclick = () => {
+                let cart = JSON.parse(localStorage.getItem('achal_cart')) || [];
+                const existingIdx = cart.findIndex(item => item.id === data.id);
+                if (existingIdx > -1) {
+                    cart[existingIdx].quantity += 1;
+                } else {
+                    cart.push({ id: data.id, name: data.name, price: data.price, size: data.size, image: data.image, quantity: 1 });
+                }
+                localStorage.setItem('achal_cart', JSON.stringify(cart));
+                updateHeaderCartCount();
+                showToast(`Added "${data.name}" to your cart!`);
+            };
+        }
+        
+        const waBtn = document.getElementById('modal-whatsapp-btn');
+        if (waBtn) {
+            const priceText = Number(data.price) > 0 ? `₹${data.price}` : 'Custom';
+            const msg = encodeURIComponent(`Hi Achal Artworks, I am interested in ordering "${data.name}" (Size: ${data.size}, Price: ${priceText}). Please share more details.`);
+            waBtn.href = `https://wa.me/917798510600?text=${msg}`;
+        }
+        
+        resetZoom();
+        productModal.classList.add('active');
+        productModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+        if (!productModal) return;
+        productModal.classList.remove('active');
+        productModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        resetZoom();
+    }
+    
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && productModal && productModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+    
+    // Zoom control buttons
+    if (zoomInBtn) {
+        zoomInBtn.addEventListener('click', () => {
+            if (currentZoom < 4) {
+                currentZoom += 0.25;
+                applyTransform();
+            }
+        });
+    }
+    
+    if (zoomOutBtn) {
+        zoomOutBtn.addEventListener('click', () => {
+            if (currentZoom > 0.6) {
+                currentZoom -= 0.25;
+                if (currentZoom < 1) { translateX = 0; translateY = 0; }
+                applyTransform();
+            }
+        });
+    }
+    
+    if (zoomResetBtn) {
+        zoomResetBtn.addEventListener('click', resetZoom);
+    }
+    
+    // Mouse Wheel Zoom
+    if (modalViewport) {
+        modalViewport.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY < 0 ? 0.15 : -0.15;
+            const newZoom = currentZoom + delta;
+            if (newZoom >= 0.6 && newZoom <= 4) {
+                currentZoom = newZoom;
+                if (currentZoom <= 1) { translateX = 0; translateY = 0; }
+                applyTransform();
+            }
+        }, { passive: false });
+        
+        // Panning / Dragging
+        modalViewport.addEventListener('mousedown', (e) => {
+            if (currentZoom > 1) {
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+            }
+        });
+        
+        window.addEventListener('mousemove', (e) => {
+            if (isDragging && currentZoom > 1) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                applyTransform();
+            }
+        });
+        
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+    }
+    
+    // Attach click triggers to product image cards
+    document.querySelectorAll('.art-card').forEach(card => {
+        const imgContainer = card.querySelector('.art-img-container');
+        const cartBtn = card.querySelector('.btn-add-to-cart');
+        const cardImg = card.querySelector('.art-img-container img');
+        
+        if (imgContainer && cartBtn) {
+            imgContainer.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const categoryElem = card.querySelector('.art-category');
+                const category = categoryElem ? categoryElem.textContent : 'Handcrafted Art';
+                const imageSrc = cardImg ? cardImg.getAttribute('src') : cartBtn.getAttribute('data-image');
+                
+                openModal({
+                    id: cartBtn.getAttribute('data-id'),
+                    name: cartBtn.getAttribute('data-name'),
+                    price: cartBtn.getAttribute('data-price'),
+                    size: cartBtn.getAttribute('data-size'),
+                    image: imageSrc,
+                    category: category
+                });
+            });
+        }
+    });
+
     // Run count update on load
     updateHeaderCartCount();
 

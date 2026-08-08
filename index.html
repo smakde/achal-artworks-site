@@ -34,6 +34,7 @@
     <header class="app-header">
         <div class="header-container">
             <a href="#" class="brand-logo">
+                <img src="assets/Achal Artworks Logo.png" alt="Achal Artworks Logo" id="logo-img">
                 <div class="brand-text">
                     <span class="brand-name">Achal</span>
                     <span class="brand-sub">Artworks</span>
@@ -85,7 +86,7 @@
                 <div class="hero-logo-banner">
                     <div class="banner-border-outer">
                         <div class="banner-border-inner">
-                            <img src="assets/logo.png" alt="Achal Artworks Royal Banner Emblem" class="banner-logo-img">
+                            <img src="assets/Achal Artworks Logo.png" alt="Achal Artworks Royal Banner Emblem" class="banner-logo-img">
                             <div class="banner-divider"></div>
                             <span class="banner-emblem-text">A C H A L</span>
                         </div>
@@ -446,6 +447,53 @@
             </div>
         </div>
     </footer>
+
+    <!-- Product Detail & Interactive Image Zoom Modal -->
+    <div id="product-modal" class="product-modal" aria-hidden="true" role="dialog">
+        <div class="product-modal-backdrop"></div>
+        <div class="product-modal-container">
+            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="product-modal-grid">
+                <!-- Left: Interactive Image Zoom Area -->
+                <div class="modal-image-area">
+                    <div class="zoom-toolbar">
+                        <button id="modal-zoom-in" class="zoom-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                        <button id="modal-zoom-out" class="zoom-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                        <button id="modal-zoom-reset" class="zoom-btn" title="Reset Zoom"><i class="fas fa-undo"></i></button>
+                        <span class="zoom-level-badge" id="zoom-level">100%</span>
+                    </div>
+                    <div class="modal-image-viewport" id="modal-img-viewport">
+                        <img id="modal-product-img" src="" alt="Product Detail Image" draggable="false">
+                    </div>
+                    <p class="zoom-instructions"><i class="fas fa-info-circle"></i> Use mouse wheel, drag image, or buttons above to zoom & inspect details</p>
+                </div>
+                <!-- Right: Product Details Column -->
+                <div class="modal-details-area">
+                    <span id="modal-product-category" class="badge">Floor Art</span>
+                    <h2 id="modal-product-title">Product Title</h2>
+                    <p id="modal-product-specs" class="art-specs"><i class="fas fa-up-down-left-right"></i> <span>Size: 3 ft</span></p>
+                    
+                    <div class="modal-price-box">
+                        <span id="modal-product-price" class="price">₹1,000</span>
+                    </div>
+
+                    <div class="modal-description">
+                        <h4>Product Highlights</h4>
+                        <ul>
+                            <li><i class="fas fa-gem"></i> Handcrafted premium acrylic base with felt & mirrors</li>
+                            <li><i class="fas fa-shield-halved"></i> 100% Reusable, water-resistant & durable</li>
+                            <li><i class="fas fa-sparkles"></i> Ideal for Diwali, Puja setups, weddings & festive decor</li>
+                        </ul>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button id="modal-add-to-cart-btn" class="btn-primary btn-block"><i class="fas fa-shopping-basket"></i> Add to Cart</button>
+                        <a id="modal-whatsapp-btn" href="#" target="_blank" class="btn-secondary btn-block"><i class="fab fa-whatsapp"></i> Order / Enquire on WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Main JS script -->
     <script src="script.js"></script>

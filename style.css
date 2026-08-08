@@ -1447,3 +1447,287 @@ img {
         justify-content: center;
     }
 }
+
+/* ==========================================================================
+   Product Detail & Interactive Image Zoom Modal Styles
+   ========================================================================== */
+.product-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.product-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.product-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(18, 14, 10, 0.8);
+    backdrop-filter: blur(8px);
+}
+
+.product-modal-container {
+    position: relative;
+    background: var(--color-bg-card);
+    width: 92%;
+    max-width: 960px;
+    max-height: 90vh;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+    z-index: 2001;
+    overflow-y: auto;
+    transform: scale(0.92);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-modal.active .product-modal-container {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.08);
+    border: none;
+    font-size: 1.8rem;
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+.product-modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 500px;
+}
+
+/* Modal Left: Interactive Zoom Area */
+.modal-image-area {
+    background: #151310;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    user-select: none;
+    border-top-left-radius: var(--border-radius-md);
+    border-bottom-left-radius: var(--border-radius-md);
+    overflow: hidden;
+}
+
+.zoom-toolbar {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.zoom-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: var(--color-accent);
+}
+
+.zoom-level-badge {
+    color: #e0e0e0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 4px;
+    min-width: 45px;
+    text-align: center;
+}
+
+.modal-image-viewport {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: grab;
+    position: relative;
+}
+
+.modal-image-viewport:active {
+    cursor: grabbing;
+}
+
+#modal-product-img {
+    max-width: 85%;
+    max-height: 70vh;
+    object-fit: contain;
+    transform-origin: center center;
+    transition: transform 0.1s ease-out;
+}
+
+.zoom-instructions {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 10px 16px;
+    background: rgba(0, 0, 0, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Modal Right: Details Column */
+.modal-details-area {
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#modal-product-title {
+    font-family: var(--font-heading);
+    font-size: 1.85rem;
+    color: var(--color-primary);
+    line-height: 1.25;
+}
+
+.modal-price-box {
+    margin: 4px 0;
+}
+
+.modal-price-box .price {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.modal-description h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    margin-bottom: 10px;
+}
+
+.modal-description ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.92rem;
+    color: var(--color-text);
+}
+
+.modal-description ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-description ul li i {
+    color: var(--color-secondary);
+    font-size: 1.05rem;
+}
+
+.modal-actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 16px;
+}
+
+.btn-block {
+    width: 100%;
+    text-align: center;
+}
+
+/* Gallery image zoom hint indicator */
+.art-img-container {
+    cursor: zoom-in;
+    position: relative;
+    overflow: hidden;
+}
+
+.art-img-container::after {
+    content: '\f00e';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: var(--transition-fast);
+}
+
+.art-card:hover .art-img-container::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (max-width: 768px) {
+    .product-modal-grid {
+        grid-template-columns: 1fr;
+    }
+    .modal-image-area {
+        border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+        min-height: 320px;
+    }
+    .modal-details-area {
+        padding: 24px;
+    }
+}
