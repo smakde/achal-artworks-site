@@ -1821,3 +1821,82 @@ img {
     margin: 0;
 }
 
+/* ==========================================================================
+   Brand Cohesive Styling for Cart Page
+   ========================================================================== */
+.cart-hero-brand {
+    background-color: var(--color-bg);
+    background-image: radial-gradient(circle at 10% 20%, rgba(197, 160, 48, 0.08) 0%, transparent 40%),
+                      radial-gradient(circle at 90% 80%, rgba(184, 29, 36, 0.05) 0%, transparent 40%);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.cart-section-brand {
+    background-color: var(--color-bg);
+    min-height: 70vh;
+}
+
+.cart-card-brand {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border) !important;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+}
+
+.cart-card-brand:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(184, 29, 36, 0.25) !important;
+}
+
+.cart-summary-brand {
+    background: linear-gradient(135deg, #8F1318 0%, #B81D24 60%, #5C0C10 100%);
+    border: 1px solid var(--color-accent) !important;
+    color: #FFFFFF;
+    box-shadow: 0 12px 32px rgba(184, 29, 36, 0.25);
+}
+
+.cart-form-control {
+    background-color: var(--color-bg) !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-text) !important;
+}
+
+.cart-form-control:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(184, 29, 36, 0.15) !important;
+}
+
+.badge-brand-secondary {
+    background-color: rgba(12, 110, 48, 0.1) !important;
+    color: var(--color-secondary) !important;
+    border: 1px solid rgba(12, 110, 48, 0.2) !important;
+}
+
+.badge-brand-primary {
+    background-color: rgba(184, 29, 36, 0.1) !important;
+    color: var(--color-primary) !important;
+    border: 1px solid rgba(184, 29, 36, 0.2) !important;
+}
+
+.badge-brand-accent {
+    background-color: rgba(197, 160, 48, 0.15) !important;
+    color: #8A6D1B !important;
+    border: 1px solid rgba(197, 160, 48, 0.3) !important;
+}
+
+.btn-brand-wa {
+    background-color: var(--color-secondary) !important;
+    color: #FFFFFF !important;
+    border: 1px solid var(--color-secondary) !important;
+    box-shadow: 0 4px 12px rgba(12, 110, 48, 0.25);
+    transition: var(--transition-smooth);
+}
+
+.btn-brand-wa:hover {
+    background-color: #085022 !important;
+    border-color: #085022 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(12, 110, 48, 0.35);
+}
+
+

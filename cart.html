@@ -71,7 +71,7 @@
     </header>
 
     <!-- Cart Page Hero Header -->
-    <section class="cart-hero py-5 bg-gradient-subtle border-bottom">
+    <section class="cart-hero-brand py-5">
         <div class="container py-3">
             <nav aria-label="breadcrumb" class="mb-3">
                 <ol class="breadcrumb mb-0">
@@ -85,21 +85,21 @@
     </section>
 
     <!-- Cart Main Content Section -->
-    <section class="cart-section py-5">
+    <section class="cart-section-brand py-5">
         <div class="container">
             <div class="row g-4" id="cart-grid-container">
                 
                 <!-- Cart Items List (Left Column - 8 Cols) -->
                 <div class="col-lg-8">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="fw-bold mb-0 text-dark"><i class="fas fa-shopping-bag text-primary me-2"></i> Cart Items</h4>
-                        <span class="badge bg-primary bg-opacity-10 text-primary border border-primary px-3 py-2 rounded-pill fw-bold" id="items-count-badge">0 Items</span>
+                        <h4 class="fw-bold mb-0 text-primary" style="font-family: var(--font-heading);"><i class="fas fa-shopping-bag me-2"></i> Selected Art Items</h4>
+                        <span class="badge badge-brand-primary px-3 py-2 rounded-pill fw-bold" id="items-count-badge">0 Items</span>
                     </div>
 
                     <!-- Items List Group Container -->
                     <div id="cart-items-list" class="d-flex flex-column gap-3 mb-4">
                         <!-- Dynamically populated by cart-page.js -->
-                        <div class="card border-0 shadow-sm rounded-4 p-4 text-center text-muted">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 text-center text-muted bg-white">
                             <div class="py-4">
                                 <i class="fas fa-spinner fa-spin fa-2x text-primary mb-3"></i>
                                 <p class="mb-0">Loading your shopping cart items...</p>
@@ -108,7 +108,7 @@
                     </div>
                     
                     <!-- Bottom Action Controls -->
-                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 pt-3 border-top">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 pt-3 border-top" style="border-color: var(--color-border) !important;">
                         <a href="index.html#collections" class="btn btn-outline-primary fw-bold px-4 py-2 rounded-3">
                             <i class="fas fa-arrow-left me-2"></i> Continue Shopping
                         </a>
@@ -123,53 +123,53 @@
                     <div class="sticky-top" style="top: 100px; z-index: 10;">
                         
                         <!-- Delivery Info Form Card -->
-                        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
-                            <h5 class="fw-bold text-dark mb-3"><i class="fas fa-truck text-success me-2"></i> Delivery Information</h5>
+                        <div class="card cart-card-brand border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                            <h5 class="fw-bold text-primary mb-3" style="font-family: var(--font-heading);"><i class="fas fa-truck text-secondary me-2"></i> Delivery Information</h5>
                             <form id="checkout-form" novalidate>
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control rounded-3" id="cust-name" placeholder="Full Name" required>
+                                    <input type="text" class="form-control cart-form-control rounded-3" id="cust-name" placeholder="Full Name" required>
                                     <label for="cust-name">Full Name <span class="text-danger">*</span></label>
                                 </div>
                                 
                                 <div class="form-floating mb-3">
-                                    <textarea class="form-control rounded-3" id="cust-address" placeholder="Address" style="height: 90px;" required></textarea>
+                                    <textarea class="form-control cart-form-control rounded-3" id="cust-address" placeholder="Address" style="height: 90px;" required></textarea>
                                     <label for="cust-address">Delivery Address <span class="text-danger">*</span></label>
                                 </div>
                                 
                                 <div class="form-floating mb-2">
-                                    <textarea class="form-control rounded-3" id="cust-notes" placeholder="Notes" style="height: 70px;"></textarea>
+                                    <textarea class="form-control cart-form-control rounded-3" id="cust-notes" placeholder="Notes" style="height: 70px;"></textarea>
                                     <label for="cust-notes">Color / Size Customization (Optional)</label>
                                 </div>
                             </form>
                         </div>
 
-                        <!-- Summary Card -->
-                        <div class="card border-0 shadow-lg rounded-4 p-4 text-white bg-dark">
-                            <h5 class="fw-bold mb-3 border-bottom border-secondary pb-3 text-warning"><i class="fas fa-receipt me-2"></i> Order Summary</h5>
+                        <!-- Summary Card (Royal Crimson & Gold Brand Theme) -->
+                        <div class="card cart-summary-brand rounded-4 p-4">
+                            <h5 class="fw-bold mb-3 border-bottom border-warning pb-3 text-warning" style="font-family: var(--font-heading);"><i class="fas fa-receipt me-2"></i> Order Summary</h5>
                             
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="text-light text-opacity-75">Subtotal</span>
+                                <span class="text-light text-opacity-90">Subtotal</span>
                                 <span id="summary-subtotal" class="fw-bold fs-5 text-light">₹0</span>
                             </div>
                             
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="text-light text-opacity-75">Shipping</span>
-                                <span class="badge bg-success bg-opacity-20 text-success border border-success px-2 py-1">Calculated via WhatsApp</span>
+                                <span class="text-light text-opacity-90">Shipping</span>
+                                <span class="badge bg-warning bg-opacity-20 text-warning border border-warning px-2 py-1">Calculated via WhatsApp</span>
                             </div>
                             
-                            <div class="border-top border-secondary pt-3 mb-4">
+                            <div class="border-top border-warning pt-3 mb-4">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="fs-6 fw-bold">Estimated Total</span>
+                                    <span class="fs-6 fw-bold text-light">Estimated Total</span>
                                     <span id="summary-total" class="fs-3 fw-bold text-warning">₹0</span>
                                 </div>
                             </div>
                             
-                            <button id="place-order-btn" class="btn btn-success btn-lg w-100 fw-bold py-3 rounded-3 shadow mb-3">
+                            <button id="place-order-btn" class="btn btn-brand-wa btn-lg w-100 fw-bold py-3 rounded-3 shadow mb-3">
                                 <i class="fab fa-whatsapp me-2 fs-5"></i> Place Order via WhatsApp
                             </button>
                             
-                            <p class="small text-light text-opacity-75 mb-0 text-center lh-sm">
-                                <i class="fas fa-shield-halved text-success me-1"></i> No instant payment taken now. We verify order items & send UPI details on WhatsApp.
+                            <p class="small text-light text-opacity-85 mb-0 text-center lh-sm">
+                                <i class="fas fa-shield-halved text-warning me-1"></i> No instant payment taken now. We verify order items & send UPI details on WhatsApp.
                             </p>
                         </div>
 
