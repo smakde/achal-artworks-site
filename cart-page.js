@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cart.forEach((item, index) => {
             const itemElement = document.createElement('div');
-            itemElement.className = 'card cart-card-brand border-0 shadow-sm rounded-4 p-3 bg-white overflow-hidden';
+            itemElement.className = 'card border-0 shadow-sm rounded-4 p-3 bg-white overflow-hidden';
 
             const priceNum = parseFloat(item.price);
             let priceDisplay = `₹${priceNum.toLocaleString('en-IN')}`;
@@ -65,33 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
             itemElement.innerHTML = `
                 <div class="row align-items-center g-3">
                     <div class="col-auto">
-                        <div class="rounded-3 p-2 d-flex align-items-center justify-content-center border" style="width: 95px; height: 95px; background-color: var(--color-bg);">
-                            <img src="${item.image}" alt="${item.name}" class="img-fluid rounded-2" style="max-height: 85px; object-fit: contain;">
+                        <div class="bg-light rounded-3 p-2 d-flex align-items-center justify-content-center border" style="width: 85px; height: 85px;">
+                            <img src="${item.image}" alt="${item.name}" class="img-fluid rounded-2" style="max-height: 75px; object-fit: contain;">
                         </div>
                     </div>
                     <div class="col">
-                        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
-                            <div>
-                                <h5 class="fw-bold mb-1 text-primary text-truncate" style="font-family: var(--font-heading); max-width: 340px;">${item.name}</h5>
-                                <div class="d-flex flex-wrap gap-2 align-items-center">
-                                    <span class="badge badge-brand-secondary rounded-pill"><i class="fas fa-up-down-left-right me-1"></i>Size: ${item.size}</span>
-                                    <span class="badge badge-brand-accent rounded-pill"><i class="fas fa-gem me-1"></i>Handcrafted Acrylic</span>
-                                </div>
-                            </div>
+                        <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+                            <h5 class="fw-bold mb-0 text-primary text-truncate" style="font-family: var(--font-heading); max-width: 320px;">${item.name}</h5>
                             <button class="btn btn-sm btn-outline-danger border-0 rounded-circle btn-remove-item d-flex align-items-center justify-content-center" data-index="${index}" title="Remove Item" style="width: 34px; height: 34px;">
                                 <i class="far fa-trash-alt fs-6"></i>
                             </button>
                         </div>
-                        
-                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-2 border-top">
-                            <span class="small fw-semibold text-muted">Unit Price: <strong class="text-dark">${priceDisplay}</strong></span>
+                        <p class="small text-muted mb-2"><i class="fas fa-up-down-left-right me-1 text-secondary"></i>Size: ${item.size}</p>
+                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                            <span class="small fw-semibold text-muted">Unit: ${priceDisplay}</span>
                             <div class="d-flex align-items-center gap-2">
-                                <div class="input-group input-group-sm" style="width: 115px;">
-                                    <button class="btn btn-outline-danger fw-bold qty-btn btn-minus" data-index="${index}">-</button>
+                                <div class="input-group input-group-sm" style="width: 110px;">
+                                    <button class="btn btn-outline-secondary fw-bold qty-btn btn-minus" data-index="${index}">-</button>
                                     <span class="form-control text-center fw-bold bg-light d-flex align-items-center justify-content-center">${item.quantity}</span>
-                                    <button class="btn btn-outline-danger fw-bold qty-btn btn-plus" data-index="${index}">+</button>
+                                    <button class="btn btn-outline-secondary fw-bold qty-btn btn-plus" data-index="${index}">+</button>
                                 </div>
-                                <span class="badge badge-brand-primary fw-bold fs-6 ms-1 px-3 py-2 rounded-3">${itemTotalDisplay}</span>
+                                <span class="badge bg-danger bg-opacity-10 text-danger border border-danger fw-bold fs-6 ms-1 px-3 py-2 rounded-3">${itemTotalDisplay}</span>
                             </div>
                         </div>
                     </div>
