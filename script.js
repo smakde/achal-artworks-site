@@ -144,10 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Product Image Modal & Zoom Functionality
-    const productModal = document.getElementById('product-modal');
-    const modalCloseBtn = document.querySelector('.modal-close-btn');
-    const modalBackdrop = document.querySelector('.product-modal-backdrop');
+    // 5. Product Image Modal & Zoom Functionality (Bootstrap 5 Modal)
+    const productModalElem = document.getElementById('productModal');
+    let bsProductModal = null;
+    
     const modalImg = document.getElementById('modal-product-img');
     const modalViewport = document.getElementById('modal-img-viewport');
     
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openModal(data) {
-        if (!productModal) return;
+        if (!productModalElem) return;
         
         if (modalImg) modalImg.src = data.image;
         const titleElem = document.getElementById('modal-product-title');
@@ -245,27 +245,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         resetZoom();
-        productModal.classList.add('active');
-        productModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closeModal() {
-        if (!productModal) return;
-        productModal.classList.remove('active');
-        productModal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        resetZoom();
-    }
-    
-    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
-    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
-    
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && productModal && productModal.classList.contains('active')) {
-            closeModal();
+
+        if (window.bootstrap) {
+            if (!bsProductModal) {
+                bsProductModal = new bootstrap.Modal(productModalElem);
+            }
+            bsProductModal.show();
+        } else {
+            productModalElem.classList.add('show');
+            productModalElem.style.display = 'block';
         }
-    });
+    }
+    
+    if (productModalElem) {
+        productModalElem.addEventListener('hidden.bs.modal', () => {
+            resetZoom();
+        });
+    }
     
     // Zoom control buttons
     if (zoomInBtn) {

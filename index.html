@@ -25,8 +25,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons for UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 <body>
 
@@ -448,63 +450,73 @@
         </div>
     </footer>
 
-    <!-- Product Detail & Interactive Image Zoom Modal -->
-    <div id="product-modal" class="product-modal" aria-hidden="true" role="dialog">
-        <div class="product-modal-backdrop"></div>
-        <div class="product-modal-container">
-            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
-            <div class="product-modal-grid">
-                <!-- Left: Interactive Image Zoom Area -->
-                <div class="modal-image-area">
-                    <div class="zoom-toolbar">
-                        <button id="modal-zoom-in" class="zoom-btn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
-                        <button id="modal-zoom-out" class="zoom-btn" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
-                        <button id="modal-zoom-reset" class="zoom-btn" title="Reset Zoom"><i class="fas fa-undo"></i></button>
-                        <span class="zoom-level-badge" id="zoom-level">100%</span>
-                    </div>
-                    <div class="modal-image-viewport" id="modal-img-viewport">
-                        <img id="modal-product-img" src="" alt="Product Detail Image" draggable="false">
-                    </div>
-                    <p class="zoom-instructions"><i class="fas fa-info-circle"></i> Use mouse wheel, drag image, or buttons above to zoom & inspect details</p>
+    <!-- Bootstrap 5 Product Detail & Interactive Image Zoom Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header border-0 pb-0 position-relative z-3">
+                    <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <!-- Right: Product Details Column -->
-                <div class="modal-details-area">
-                    <span id="modal-product-category" class="badge">Floor Art</span>
-                    <h2 id="modal-product-title">Product Title</h2>
-                    <p id="modal-product-specs" class="art-specs"><i class="fas fa-up-down-left-right"></i> <span>Size: 3 ft</span></p>
-                    
-                    <div class="modal-price-box">
-                        <span id="modal-product-price" class="price">₹1,000</span>
-                    </div>
-
-                    <div class="modal-description">
-                        <h4>Product Highlights</h4>
-                        <ul>
-                            <li><i class="fas fa-gem"></i> Handcrafted premium acrylic base with felt & mirrors</li>
-                            <li><i class="fas fa-shield-halved"></i> 100% Reusable, water-resistant & durable</li>
-                            <li><i class="fas fa-sparkles"></i> Ideal for Diwali, Puja setups, weddings & festive decor</li>
-                        </ul>
-                    </div>
-
-                    <div class="modal-qty-row">
-                        <label for="modal-qty-input">Quantity:</label>
-                        <div class="qty-control">
-                            <button id="modal-qty-minus" class="qty-btn" type="button">-</button>
-                            <input id="modal-qty-input" type="number" value="1" min="1" max="50">
-                            <button id="modal-qty-plus" class="qty-btn" type="button">+</button>
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        <!-- Left: Interactive Image Zoom Area -->
+                        <div class="col-lg-6 bg-dark position-relative d-flex flex-column align-items-center justify-content-center p-3" style="min-height: 420px; user-select: none;">
+                            <div class="position-absolute top-0 start-0 m-3 z-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-2 border border-secondary">
+                                <button id="modal-zoom-in" class="btn btn-sm btn-outline-light rounded-circle" style="width:34px;height:34px;" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+                                <button id="modal-zoom-out" class="btn btn-sm btn-outline-light rounded-circle" style="width:34px;height:34px;" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+                                <button id="modal-zoom-reset" class="btn btn-sm btn-outline-light rounded-circle" style="width:34px;height:34px;" title="Reset Zoom"><i class="fas fa-undo"></i></button>
+                                <span id="zoom-level" class="badge text-light fw-bold px-2">100%</span>
+                            </div>
+                            <div id="modal-img-viewport" class="w-100 h-100 d-flex align-items-center justify-content-center overflow-hidden" style="cursor: grab;">
+                                <img id="modal-product-img" src="" alt="Product Detail Image" class="img-fluid rounded" style="max-height: 65vh; object-fit: contain; transition: transform 0.1s ease-out;" draggable="false">
+                            </div>
+                            <p class="text-light text-opacity-75 small mb-0 mt-2 text-center"><i class="fas fa-info-circle"></i> Use mouse wheel, drag image, or buttons above to zoom & inspect details</p>
                         </div>
-                    </div>
+                        
+                        <!-- Right: Product Details Column -->
+                        <div class="col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-between">
+                            <div>
+                                <span id="modal-product-category" class="badge bg-success bg-opacity-10 text-success border border-success mb-3 px-3 py-2 uppercase tracking-wide fw-bold">Floor Art</span>
+                                <h2 id="modal-product-title" class="fw-bold mb-2 text-primary" style="font-family: var(--font-heading);">Product Title</h2>
+                                <p id="modal-product-specs" class="text-muted mb-3"><i class="fas fa-up-down-left-right me-2"></i><span>Size: 3 ft</span></p>
+                                
+                                <div class="modal-price-box mb-3">
+                                    <span id="modal-product-price" class="fs-2 fw-bold text-danger">₹1,000</span>
+                                </div>
 
-                    <div class="modal-actions">
-                        <button id="modal-add-to-cart-btn" class="btn-primary btn-block"><i class="fas fa-shopping-basket"></i> Add to Cart</button>
-                        <a id="modal-whatsapp-btn" href="#" target="_blank" class="btn-secondary btn-block"><i class="fab fa-whatsapp"></i> Order / Enquire on WhatsApp</a>
+                                <div class="modal-description mb-4">
+                                    <h6 class="text-uppercase text-muted fw-bold small mb-2">Product Highlights</h6>
+                                    <ul class="list-unstyled small text-dark d-flex flex-column gap-2 mb-0">
+                                        <li><i class="fas fa-gem text-success me-2 fs-6"></i> Handcrafted premium acrylic base with felt & mirrors</li>
+                                        <li><i class="fas fa-shield-halved text-success me-2 fs-6"></i> 100% Reusable, water-resistant & durable</li>
+                                        <li><i class="fas fa-sparkles text-success me-2 fs-6"></i> Ideal for Diwali, Puja setups, weddings & festive decor</li>
+                                    </ul>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-3 mb-4">
+                                    <label for="modal-qty-input" class="fw-bold text-dark small mb-0">Quantity:</label>
+                                    <div class="input-group input-group-sm" style="width: 130px;">
+                                        <button id="modal-qty-minus" class="btn btn-outline-secondary fw-bold" type="button">-</button>
+                                        <input id="modal-qty-input" type="number" class="form-control text-center fw-bold fs-6" value="1" min="1" max="50">
+                                        <button id="modal-qty-plus" class="btn btn-outline-secondary fw-bold" type="button">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button id="modal-add-to-cart-btn" class="btn btn-danger btn-lg fw-bold shadow-sm"><i class="fas fa-shopping-basket me-2"></i> Add to Cart</button>
+                                <a id="modal-whatsapp-btn" href="#" target="_blank" class="btn btn-outline-success btn-lg fw-bold"><i class="fab fa-whatsapp me-2"></i> Order / Enquire on WhatsApp</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Main JS script -->
-    <script src="script.js"></script>
+    <script src="script.js?v=3.0"></script>
 </body>
 </html>
