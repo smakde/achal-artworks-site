@@ -177,6 +177,25 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTransform();
     }
     
+    // Quantity selector buttons inside modal
+    const qtyMinusBtn = document.getElementById('modal-qty-minus');
+    const qtyPlusBtn = document.getElementById('modal-qty-plus');
+    const qtyInput = document.getElementById('modal-qty-input');
+
+    if (qtyMinusBtn && qtyInput) {
+        qtyMinusBtn.addEventListener('click', () => {
+            let val = parseInt(qtyInput.value) || 1;
+            if (val > 1) qtyInput.value = val - 1;
+        });
+    }
+
+    if (qtyPlusBtn && qtyInput) {
+        qtyPlusBtn.addEventListener('click', () => {
+            let val = parseInt(qtyInput.value) || 1;
+            if (val < 50) qtyInput.value = val + 1;
+        });
+    }
+
     function openModal(data) {
         if (!productModal) return;
         
@@ -198,20 +217,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const priceNum = Number(data.price);
             priceElem.textContent = priceNum > 0 ? `₹${priceNum.toLocaleString('en-IN')}` : 'Custom Pricing';
         }
+
+        if (qtyInput) qtyInput.value = 1;
         
         const cartBtn = document.getElementById('modal-add-to-cart-btn');
         if (cartBtn) {
             cartBtn.onclick = () => {
+                const qtyToAdd = Math.max(1, parseInt(qtyInput ? qtyInput.value : 1) || 1);
                 let cart = JSON.parse(localStorage.getItem('achal_cart')) || [];
                 const existingIdx = cart.findIndex(item => item.id === data.id);
                 if (existingIdx > -1) {
-                    cart[existingIdx].quantity += 1;
+                    cart[existingIdx].quantity += qtyToAdd;
                 } else {
-                    cart.push({ id: data.id, name: data.name, price: data.price, size: data.size, image: data.image, quantity: 1 });
+                    cart.push({ id: data.id, name: data.name, price: data.price, size: data.size, image: data.image, quantity: qtyToAdd });
                 }
                 localStorage.setItem('achal_cart', JSON.stringify(cart));
                 updateHeaderCartCount();
-                showToast(`Added "${data.name}" to your cart!`);
+                showToast(`Added ${qtyToAdd}x "${data.name}" to your cart!`);
             };
         }
         
@@ -306,13 +328,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Attach click triggers to product image cards
     document.querySelectorAll('.art-card').forEach(card => {
-        const imgContainer = card.querySelector('.art-img-container');
         const cartBtn = card.querySelector('.btn-add-to-cart');
         const cardImg = card.querySelector('.art-img-container img');
         
-        if (imgContainer && cartBtn) {
-            imgContainer.addEventListener('click', (e) => {
-                e.stopPropagation();
+        if (cartBtn) {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', (e) => {
+                // If user clicked directly on the Add to Cart button inside the card, let that handle cart add directly
+                if (e.target.closest('.btn-add-to-cart')) return;
+                
                 const categoryElem = card.querySelector('.art-category');
                 const category = categoryElem ? categoryElem.textContent : 'Handcrafted Art';
                 const imageSrc = cardImg ? cardImg.getAttribute('src') : cartBtn.getAttribute('data-image');
