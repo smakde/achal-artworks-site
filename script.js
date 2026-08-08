@@ -324,29 +324,23 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Attach click triggers to product image cards
     document.querySelectorAll('.art-card').forEach(card => {
-        const cartBtn = card.querySelector('.btn-add-to-cart');
         const cardImg = card.querySelector('.art-img-container img');
         
-        if (cartBtn) {
-            card.style.cursor = 'pointer';
-            card.addEventListener('click', (e) => {
-                // If user clicked directly on the Add to Cart button inside the card, let that handle cart add directly
-                if (e.target.closest('.btn-add-to-cart')) return;
-                
-                const categoryElem = card.querySelector('.art-category');
-                const category = categoryElem ? categoryElem.textContent : 'Handcrafted Art';
-                const imageSrc = cardImg ? cardImg.getAttribute('src') : cartBtn.getAttribute('data-image');
-                
-                openModal({
-                    id: cartBtn.getAttribute('data-id'),
-                    name: cartBtn.getAttribute('data-name'),
-                    price: cartBtn.getAttribute('data-price'),
-                    size: cartBtn.getAttribute('data-size'),
-                    image: imageSrc,
-                    category: category
-                });
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            const categoryElem = card.querySelector('.art-category');
+            const category = categoryElem ? categoryElem.textContent : 'Handcrafted Art';
+            const imageSrc = card.getAttribute('data-image') || (cardImg ? cardImg.getAttribute('src') : '');
+            
+            openModal({
+                id: card.getAttribute('data-id'),
+                name: card.getAttribute('data-name'),
+                price: card.getAttribute('data-price'),
+                size: card.getAttribute('data-size'),
+                image: imageSrc,
+                category: category
             });
-        }
+        });
     });
 
     // Run count update on load
