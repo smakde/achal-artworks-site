@@ -1,4 +1,4 @@
-name: Deploy to AWS S3 & CloudFront
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,31 +6,42 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Prepare Site Files
+        run: |
+          mkdir -p _site
+          rsync -av --exclude='.git*' \
+                    --exclude='_site' \
+                    --exclude='terraform' \
+                    --exclude='deploy.sh' \
+                    ./ _site/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ vars.AWS_REGION }}
+          path: '_site'
 
-      - name: Deploy to S3 Bucket
-        run: |
-          aws s3 sync . "s3://${{ vars.AWS_S3_BUCKET_NAME }}" \
-            --exclude "terraform/*" \
-            --exclude ".github/*" \
-            --exclude "deploy.sh" \
-            --exclude ".git/*"
-
-      - name: Invalidate CloudFront Cache
-        run: |
-          aws cloudfront create-invalidation \
-            --distribution-id "${{ vars.AWS_CLOUDFRONT_DISTRIBUTION_ID }}" \
-            --paths "/*"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
