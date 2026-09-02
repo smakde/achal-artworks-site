@@ -20,3 +20,18 @@ Thumbs.db
 
 # Build outputs
 _site/
+
+# Credentials & Secrets
+.credentials/
+*.credentials.json
+client_secret*.json
+*.token.json
+oauth_states.json
+.google_workspace_mcp/
+
+# Local Environment & Agent Cache
+.env
+.env.*
+.gemini/
+.agents/scratch/
+*.tmp
